@@ -1,0 +1,21 @@
+<!--This is the book list page code that gets pasted onto base code-->
+
+{% extends "base.html" %}
+
+{% block app_content %}
+    <h1>The Entire Book Collection</h1>
+    <p>Active User Viewing: <b>{{current_user.username}}</b></p>
+    <br>
+
+    <div id="Borrow Table">
+        <h3>Here are the current list of loans</h3>
+            <div>{% include '_borrow.html' %}</div>
+        <p>Request Book? <a href="{{url_for('borrow')}}"> Click to request!</a></p>
+    </div>
+
+    <div id="Book Table">
+        <h3>Here are the current list of books</h3>
+            <div>{% include '_books.html' %}</div>
+    </div>
+
+{% endblock %}

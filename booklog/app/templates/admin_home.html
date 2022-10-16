@@ -1,0 +1,48 @@
+<!-- This is the admin home page code -->
+{% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block app_content %}
+
+{% if current_user.is_admin %}
+    <h1>Welcome Admin: {{current_user.username}}! </h1>
+    <h4>Here's your Dashboard:</h4>
+
+    <br>
+
+    <div id="User Table">
+        <h3>Here are the current list of Users</h3>
+        <div>{% include '_users.html' %}</div>
+        <p>New User? <a href="{{url_for('add_user')}}"> Click to add!</a></p>
+    </div>
+
+    <br>
+
+    <div id="Borrow Table">
+        <h3>Here are the current list of loans</h3>
+            <div>{% include '_borrow.html' %}</div>
+        <p>Request Book? <a href="{{url_for('borrow')}}"> Click to request!</a></p>
+    </div>
+
+    <div id="Book Table">
+        <h3>Here are the current list of Books</h3>
+        <div>{% include '_books.html' %}</div>
+        <p>New Book? <a href="{{url_for('register_book')}}"> Click to add!</a></p>
+    </div>
+
+    <br>
+
+    <div class="posts">
+        <h3>Here are the posts uploaded by Users</h3>
+        {% for post in posts %}
+            <div>{% include '_post.html' %}</div>
+        {% endfor %}
+    </div>
+
+{% else %}
+<h1>You are not an Admin</h1>
+<p><a href="{{url_for('home')}}">Return to Home</a> </p>
+
+{% endif %}
+
+{% endblock %}
